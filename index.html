@@ -15,33 +15,58 @@
   </head>
   <body>
     <div class="wrapper">
-      <header class="header">header</header>
-      <main class="main">main</main>
-      <footer class="footer">footer</footer>
+      <!-- **** HEADER **** -->
+      <header class="header">
+        <!-- Modal Login -->
+        <div class="login" id="login">
+          <div class="login__form">
+            <label class="login__form-name">Як вас звуть?</label>
+            <div>
+              <input
+                placeholder="Введіть ім'я..."
+                type="input"
+                title="Введіть ім'я"
+                id="loginName"
+                class="login__form-input"
+              />
+            </div>
+            <button
+              type="button"
+              title="натисніть щоб почати гру"
+              id="loginButton"
+              class="login__form-button"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+        <h3 class="" id="namePlayer"></h3>
+        <p>Оберить яки числа використовивать</p>
+        <div class="numbers">
+          <div>
+            <input type="checkbox" id="num1" name="1" />
+            <label for="num1"><span>1</span></label>
+          </div>
+          <div>
+            <input type="checkbox" id="num2" name="2" />
+            <label for="num2"><span>2</span></label>
+          </div>
+          <div>
+            <input type="checkbox" id="num3" name="3" />
+            <label for="num3"><span>3</span></label>
+          </div>
+        </div>
+        <button id="buttonStart" type="button">Почати</button>
+      </header>
+      <!-- ***** MAIN ***** -->
+      <main class="main"></main>
+      <!-- ***** FOOTER ***** -->
+      <footer class="footer">
+        <img src="./img/mouse.png" height="60px" alt="" />
+        <img src="./img/cat.png" alt="" />
+      </footer>
     </div>
 
-    <!-- Modal Login -->
-    <div class="login">
-      <div class="login__form">
-        <h2 class="login__form-name">Як вас звуть?</h2>
-        <div>
-          <input
-            placeholder="Єва"
-            type="input"
-            title="Введіть ім'я"
-            id="loginName"
-            class="login__form-input"
-          />
-        </div>
-        <button
-          title="натисніть щоб почати гру"
-          id="loginButton"
-          class="login__form-button"
-        >
-          Грати
-        </button>
-      </div>
-    </div>
     <!-- - JS - -->
     <script src="/js/script.js"></script>
   </body>
