@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Таблиця множення</title>
   </head>
   <body>
@@ -19,7 +19,8 @@
       <header class="header">
         <!-- Modal Login -->
         <div class="login" id="login">
-          <div class="login__form">
+          <h3 class="" id="namePlayer"></h3>
+          <div class="login__form" id="loginForm">
             <label class="login__form-name">Як вас звуть?</label>
             <div>
               <input
@@ -40,26 +41,45 @@
             </button>
           </div>
         </div>
-        <h3 class="" id="namePlayer"></h3>
-        <p>Оберить яки числа використовивать</p>
-        <div class="numbers">
-          <div>
-            <input type="checkbox" id="num1" name="1" />
-            <label for="num1"><span>1</span></label>
-          </div>
-          <div>
-            <input type="checkbox" id="num2" name="2" />
-            <label for="num2"><span>2</span></label>
-          </div>
-          <div>
-            <input type="checkbox" id="num3" name="3" />
-            <label for="num3"><span>3</span></label>
-          </div>
-        </div>
-        <button id="buttonStart" type="button">Почати</button>
       </header>
       <!-- ***** MAIN ***** -->
-      <main class="main"></main>
+      <main class="main">
+        <div id="choiceNumbers">
+          <p>Оберить яки числа використовивать</p>
+          <div class="numbers">
+            <div>
+              <input type="checkbox" id="num1" name="1" />
+              <label for="num1"><span>1</span></label>
+            </div>
+            <div>
+              <input type="checkbox" id="num2" name="2" />
+              <label for="num2"><span>2</span></label>
+            </div>
+            <div>
+              <input type="checkbox" id="num3" name="3" />
+              <label for="num3"><span>3</span></label>
+            </div>
+          </div>
+          <button id="buttonStart" type="button">Почати</button>
+        </div>
+        <!-- End choice of numbers -->
+        <div id="gameBoard">
+          <div class="questions">
+            <div id="question"></div>
+          </div>
+          <div class="answers" id="answers">
+            <div class="ansver" id="ansver_n1">
+              <button type="button">5</button>
+            </div>
+            <div class="ansver" id="ansver_n2">
+              <button type="button">30</button>
+            </div>
+            <div class="ansver" id="ansver_n3">
+              <button type="button">45</button>
+            </div>
+          </div>
+        </div>
+      </main>
       <!-- ***** FOOTER ***** -->
       <footer class="footer">
         <img src="./img/mouse.png" height="60px" alt="" />
@@ -68,6 +88,6 @@
     </div>
 
     <!-- - JS - -->
-    <script src="/js/script.js"></script>
+    <script src="./js/script.js"></script>
   </body>
 </html>
