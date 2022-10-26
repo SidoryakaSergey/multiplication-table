@@ -107,10 +107,10 @@ input[type='checkbox'] + label span {
   display: inline-block;
   font-size: 1em;
   color: rgb(100, 11, 100);
-  width: 144px; /*Размер вашей кнопки или чекбокса*/
+  width: 144px;
   height: 135px;
   margin: -1px 4px 0 0;
-  /* vertical-align: middle; */
+
   background: url(../img/Blue.png) left top no-repeat;
   cursor: pointer;
   transition-duration: 300ms;
