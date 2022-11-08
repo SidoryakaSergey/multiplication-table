@@ -8,6 +8,29 @@ function testStorage() {
   console.log('>>', JSON.parse(dataLocalStorage));
 }
 
+let timeNow = new Date();
+let hours = timeNow.getHours();
+let minuts = timeNow.getMinutes();
+let secs = timeNow.getSeconds();
+
+const deg = 6;
+const hours_arrow = document.getElementById('hours_arrow');
+const minuts_arrow = document.getElementById('minuts_arrow');
+const seconds_arrow = document.getElementById('seconds__arrow');
+
+// console.log(hours);
+
+const clock_timer = setInterval(() => {
+  let timeNow = new Date();
+  let hours = timeNow.getHours() * 30;
+  let minuts = timeNow.getMinutes() * deg;
+  let seconds = timeNow.getSeconds() * deg;
+
+  hours_arrow.style.transform = `rotateZ(${hours + minuts / 12}deg)`;
+  minuts_arrow.style.transform = `rotateZ(${minuts}deg)`;
+  seconds_arrow.style.transform = `rotateZ(${seconds}deg)`;
+}, 500);
+
 const loginButton = document.getElementById('loginButton');
 const login = document.getElementById('login');
 const loginName = document.getElementById('loginName');
@@ -19,6 +42,7 @@ const buttonStart = document.getElementById('buttonStart');
 const gameBoard = document.getElementById('gameBoard');
 const question = document.getElementById('question');
 const answers = document.getElementById('answers');
+const cat = document.getElementById('cat');
 
 const selectedNumbers = [];
 
@@ -32,29 +56,10 @@ loginButton.addEventListener('click', () => {
   }
 });
 
-function createdQuestion(arrayNumbers) {
-  const number_of_questions = 20;
-  const len = arrayNumbers.length;
-  const arrayQuestions = [];
-
-  return arrayQuestions;
-}
+//  >>> Start game\
 
 buttonStart.addEventListener('click', () => {
-  // console.log(numbers);
-  for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i].checked) {
-      selectedNumbers.push(i + 1);
-    }
-  }
-
-  console.log(multiplication_table);
-  console.log(selectedNumbers);
-
-  choiceNumbers.style.display = 'none';
-  gameBoard.style.display = 'flex';
-
-  question.innerHTML = '5x6=?';
+  cat.classList.toggle('cat__wrong');
 });
 
 answers.addEventListener('click', (target) => {
@@ -67,3 +72,7 @@ answers.addEventListener('click', (target) => {
     answers.style.display = 'none';
   }
 });
+
+// const animCat = setTimeout(() => {
+//   cat.classList.toggle('cat_correct');
+// }, 500);

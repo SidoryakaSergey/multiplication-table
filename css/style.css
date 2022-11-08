@@ -5,6 +5,7 @@
 }
 
 body {
+  position: relative;
   background-color: #3f3186;
   font-family: 'Montserrat', sans-serif;
   font-size: 24px;
@@ -164,8 +165,132 @@ input[type='checkbox']:checked + label span {
 
 /* <!-- ***** FOOTER ***** --> */
 .footer {
+  position: relative;
   background-color: burlywood;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+#cat {
+  position: absolute;
+  left: 500px;
+  width: 374px;
+  height: 250px;
+}
+
+.cat__correct {
+  background-image: url('../img/cat_correct.png');
+}
+
+.cat__wrong {
+  background-image: url('../img/cat_wrong.png');
+}
+
+.clock {
+  display: flex;
+  top: 30%;
+  left: 20%;
+  z-index: 9999;
+  position: fixed;
+  background-image: url('../img/clock.png');
+  width: 144px;
+  height: 202px;
+}
+
+.clock__dial {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 81px;
+  left: 37px;
+  z-index: 4;
+  /* background: #386; */
+}
+
+.clock__dial-wrapper {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  /* background: #666; */
+}
+
+.clock__dial-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #000;
+  border-radius: 50%;
+  z-index: 999;
+}
+
+.hour__arrow {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+}
+.min__arrow {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+}
+.sec__arrow {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+}
+
+.hour__arrow-line,
+.min__arrow-line,
+.sec__arrow-line {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  position: absolute;
+  border-radius: 50%;
+}
+
+.hour__arrow-line {
+  width: 60px;
+  height: 60px;
+}
+.min__arrow-line {
+  width: 70px;
+  height: 70px;
+}
+.sec__arrow-line {
+  width: 80px;
+  height: 80px;
+}
+
+.hour__arrow-line::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 25px;
+  background-color: rgb(35, 25, 133);
+  z-index: 10;
+  border-radius: 6px 6px 0 0;
+}
+.min__arrow-line::before {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 40px;
+  background-color: rgb(10, 87, 61);
+  z-index: 11;
+  border-radius: 6px 6px 0 0;
+}
+.sec__arrow-line::before {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 50px;
+  background-color: #666;
+  z-index: 12;
+  border-radius: 6px 6px 0 0;
 }
