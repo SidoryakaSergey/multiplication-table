@@ -10,8 +10,8 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   font-weight: bold;
-  background-image: url(/img/castle.jpg);
-  background-size: cover;
+  /* background-image: url(/img/castle.jpg);
+  background-size: cover; */
 }
 
 .wrapper {
@@ -25,64 +25,23 @@ body {
 
 /* <!-- **** HEADER **** -- >  */
 .header {
-  /* border: black 2px solid; */
   font-size: 1.5em;
   text-align: center;
 }
-#namePlayer {
-  color: aqua;
-  margin-bottom: 20px;
-}
-
-.login {
-  min-width: 400px;
-  min-height: 100px;
-  /* height: 10%; */
-  background-color: chocolate;
-  border-radius: 10px;
-  box-shadow: 2px 2px black;
+/* <!-- Modal Login --> */
+.login__form-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login__form {
-  padding: 2% 2%;
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
-  /* height: 150px; */
-}
-
-.login__form-name {
-  text-align: center;
-  /* margin-bottom: 20px; */
-  font-size: 1.2em;
-  margin: 0 2%;
-}
-.login__form-input {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.2em;
-  font-weight: bold;
-  /* padding-left: 5px;
-  margin-bottom: 30px; */
-  padding: 2% 2%;
-  margin: 0 2%;
-  border-radius: 10px;
-}
-
-.login__form-button,
-#buttonStart {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  padding-left: 5px;
-  padding: 24px;
-  border-radius: 10px;
-  background-color: cornflowerblue;
-}
-
-.login__form-button:hover,
-#buttonStart:hover {
-  background-color: mediumspringgreen;
+  width: 600px;
+  height: 400px;
+  background: #666;
 }
 
 /* <!-- ***** MAIN ***** --> */
@@ -128,7 +87,7 @@ input[type='checkbox']:checked + label span {
 }
 
 .questions {
-  width: 100%;
+  width: 60%;
   height: 200px;
   background-color: rgb(18, 114, 90);
   border-radius: 50px;
