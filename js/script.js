@@ -7,14 +7,11 @@ const choiceNumbers = document.getElementById('choiceNumbers');
 const numbers = document.querySelectorAll('[type="checkbox"]');
 const buttonStart = document.getElementById('buttonStart');
 const gameBoard = document.getElementById('gameBoard');
-const question = document.getElementById('question');
-const answers = document.getElementById('answers');
 const cat = document.getElementById('cat');
 const loginFormWrapper = document.getElementById('login__form-wrapper');
 const loginForm = document.getElementById('login__form');
 const listUsers = document.getElementById('list_Users');
 const namePlayer = document.getElementById('name-player');
-const scorePlayer = document.getElementById('score-player');
 
 function createListLoadUserNames() {
   const listUserNames = [];
@@ -42,7 +39,7 @@ loginForm.addEventListener('click', (target) => {
   const targetID = target.target.id;
   const targetButton = target.target;
   if (targetID === 'create_player') {
-    const newName = window.prompt('Inpit Name');
+    const newName = window.prompt('Input Name:');
     createUserInDataStorage(newName);
     loadUserNames.push(newName);
     createLoginMenu(loadUserNames);
@@ -58,8 +55,8 @@ loginForm.addEventListener('click', (target) => {
     // for (let el in objectLocalStor) {
     //   player[el] = objectLocalStor[el];
     // }
-    Object.assign(player, objectLocalStor);
-    console.log('player ->', player);
+    const temp = Object.assign(player, objectLocalStor);
+    console.log('temp>', temp);
   }
   if (targetID === 'button_del') {
     deleteUserInDataStorage(targetButton.dataset.name);
@@ -95,44 +92,88 @@ function deleteUserInDataStorage(nameUser) {
 }
 
 const selectedNumbers = [];
-let playerBasketQuestions = [];
+let basketQuestions = [];
+const question = document.getElementById('question');
+const answers = document.getElementById('answers');
+const scorePlayer = document.getElementById('score-player');
+let statusGame = 0;
+let correctAnswer;
+let correctReply = 0;
+let wrongReply = 0;
+
 //  >>> Start game\
 buttonStart.addEventListener('click', () => {
   cat.classList.toggle('cat__wrong');
   gameBoard.style.display = 'flex';
   choiceNumbers.style.display = 'none';
-
   for (let number of numbers) {
     if (number.checked) {
       selectedNumbers.push(number.dataset.number);
     }
   }
-  playerBasketQuestions = createplayerBasketQuestions();
-
-  console.log('playerBasketQuestions=>', playerBasketQuestions);
+  basketQuestions = createBasketQuestions();
+  // console.log('basketQuestions=>', basketQuestions);
+  renderScore(correctReply, wrongReply);
+  playGame(statusGame);
 });
 
-function createplayerBasketQuestions() {
+answers.addEventListener('click', (target) => {
+  console.log(target.path[0].innerHTML);
+  const playerAnswer = parseInt(target.path[0].innerHTML);
+
+  if (playerAnswer === correctAnswer) {
+    console.log('true answer');
+    renderScore(++correctReply, wrongReply);
+    playGame(statusGame++);
+  } else {
+    console.log('false answer');
+    renderScore(correctReply, ++wrongReply);
+    playGame(++statusGame);
+  }
+});
+
+function renderScore(corect, wrong) {
+  scorePlayer.innerHTML = `${corect}:${wrong}`;
+}
+
+function playGame(game) {
+  const NUMBEROFQUESTIONS = 10;
+  if (game < NUMBEROFQUESTIONS) {
+    renderQuestion(randomQuestion(basketQuestions.length));
+  } else {
+    console.log('Game over!');
+  }
+
+  function randomQuestion(len) {
+    console.log('len=', len);
+    return Math.floor(Math.random() * len);
+  }
+
+  function renderQuestion(id) {
+    // console.log('id', id);
+    question.innerHTML = `
+    ${basketQuestions[id].mult1} * ${basketQuestions[id].mult2} = ?
+    `;
+    correctAnswer = basketQuestions[id].mult1 * basketQuestions[id].mult2;
+    // console.log('correctAnswer=', correctAnswer);
+    const answerButton = answers.querySelectorAll('[data-answer]');
+    // console.log(answerButton);
+    for (let key = 0; key < 4; key++) {
+      answerButton[key].innerHTML = `${basketQuestions[id]['v' + (key + 1)]}`;
+    }
+  }
+}
+
+function createBasketQuestions() {
   const { multiplication_table: table } = player;
-  console.log('table=>', table);
-  console.log('selectedNumbers=>', selectedNumbers);
+  // console.log('table=>', table);
+  // console.log('selectedNumbers=>', selectedNumbers);
   const playerTable = table.filter((elem) => {
     return selectedNumbers.includes(elem.mult1.toString());
   });
   // console.log('playerTable=>', playerTable);
   return playerTable;
 }
-
-answers.addEventListener('click', (target) => {
-  // console.log(target.path[1]);
-  const el = target.path[1];
-
-  if (el.classList.contains('ansver')) {
-    question.innerHTML = '5x6=30';
-    // console.log(el.innerHTML);
-    answers.style.display = 'none';
-  }
-});
 
 // ********** ANALOG CLOCK *******
 let timeNow = new Date();
