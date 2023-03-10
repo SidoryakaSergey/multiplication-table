@@ -1,4 +1,3 @@
-console.log(object);
 const dataLocalStorage = [];
 const player = {};
 const PREFIX = 'multiplicationTable_';
