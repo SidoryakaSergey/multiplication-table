@@ -1,4 +1,3 @@
-console.log('BEGIN');
 const dataLocalStorage = [];
 const player = {};
 const PREFIX = 'multiplicationTable_';
@@ -27,7 +26,7 @@ function createListLoadUserNames() {
   return listUserNames;
 }
 
-const loadUserNames = createListLoadUserNames();
+let loadUserNames = createListLoadUserNames();
 
 window.addEventListener('load', () => {
   console.log('LOAD');
@@ -51,12 +50,19 @@ loginForm.addEventListener('click', (target) => {
     const objectLocalStor = JSON.parse(
       localStorage.getItem(PREFIX + targetButton.dataset.name)
     );
-
-    // for (let el in objectLocalStor) {
-    //   player[el] = objectLocalStor[el];
-    // }
-    const temp = Object.assign(player, objectLocalStor);
-    console.log('temp>', temp);
+    Object.assign(player, objectLocalStor);
+  }
+  if (targetID === 'button_edit') {
+    const newName = window.prompt('Edit your Name:', player.name);
+    const objectLocalStor = JSON.parse(
+      localStorage.getItem(PREFIX + targetButton.dataset.name)
+    );
+    Object.assign(player, objectLocalStor);
+    deleteUserInDataStorage(targetButton.dataset.name);
+    player.name = newName;
+    createUserInDataStorage(newName);
+    loadUserNames = createListLoadUserNames();
+    createLoginMenu(loadUserNames);
   }
   if (targetID === 'button_del') {
     deleteUserInDataStorage(targetButton.dataset.name);
@@ -69,6 +75,7 @@ function addPlayerforMenu(name) {
   return `
      <p data-${name}='${name}'>${name} 
      <button id='button_ok' data-name=${name} type='button'>Ok</button>
+     <button id='button_edit' data-name=${name} type='button'>Edit</button>
      <button id='button_del' data-name=${name} type='button'>Del</button>
       </p> 
     `;
@@ -145,7 +152,7 @@ function playGame(game) {
   }
 
   function randomQuestion(len) {
-    console.log('len=', len);
+    // console.log('len=', len);
     return Math.floor(Math.random() * len);
   }
 
